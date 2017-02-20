@@ -1,0 +1,7 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: print magic number
+      debug:
+        msg: "{{ 5 | magic_number }}"

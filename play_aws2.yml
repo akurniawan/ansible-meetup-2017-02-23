@@ -1,0 +1,14 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: gather ec2 ip from certain cluster
+      add_host:
+        name: "{{ item }}"
+        groups: new_group
+
+- hosts: new_group
+  tasks:
+    - name: get hostname
+      command: hostname
