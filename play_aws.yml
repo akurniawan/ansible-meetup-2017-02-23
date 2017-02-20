@@ -1,9 +1,29 @@
 ---
 - hosts: localhost
   connection: local
-  gather_facts: false
   tasks:
-    - name: get ec2 instance lists
-      debug:
-        msg: "{{ item }}"
-      with_items: "{{ 'ap-southeast-1' | get_instance_by_tags(Name='test-ansible') }}"
+    - name: create dummy ec2 instance
+      ec2:
+        region: "ap-southeast-1"
+        key_name: "test-instance"
+        instance_type: t2.nano
+        image: "ami-eaba0e89"
+        wait: true
+        group: "w77-office-app"
+        exact_count: 2
+        count_tag:
+          Cluster: "test-ansible"
+        vpc_subnet_id: "subnet-9eb519e8"
+        instance_tags:
+          Cluster: "test-ansible"
+
+    - name: gather ec2 ip from newly created cluster
+      add_host:
+        name: "{{ item }}"
+        groups: new_group
+      with_items: "{{ 'ap-southeast-1' | get_instances_by_tags(Cluster='test-ansible', state='running') }}"
+
+- hosts: new_group
+  tasks:
+    - name: get hostname
+      command: hostname
