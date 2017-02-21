@@ -12,13 +12,13 @@ In this repository we could learn how to create new filter plugins in Ansible.
   Within `ansible.cfg`, you can find field named `filter_plugins`. You can change the value to meet your needs. 
   You can also follow our structure in this repository
   ```
-  ├── ansible.cfg
-  ├── filter_plugins
-  │   ├── aws.py
-  │   ├── new_plugins.py
-  ├── play_aws.yml
-  ├── play.yml
-  └── README.md
+  +-- ansible.cfg
+  +-- filter_plugins
+  |   +-- aws.py
+  │   +-- new_plugins.py
+  +-- play_aws.yml
+  +-- play.yml
+  +-- README.md
   ```
 2. The only thing you need to create new filter plugin is
   ``` Python
