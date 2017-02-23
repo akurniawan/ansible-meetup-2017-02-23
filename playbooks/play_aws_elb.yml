@@ -10,7 +10,8 @@
         region: "ap-southeast-1"
         instance_ids: "{{ 'ap-southeast-1' | get_instances_by_tags(\ 
           return_key='InstanceId',\ 
-          Cluster='test-ansible') }}"
+          Cluster='test-ansible',\ 
+          state='running') }}"
         subnets: "{{ 'vpc-eaf6088e' | get_subnet_ids_by_tags(region='ap-southeast-1', Tier='app') }}"
         listeners:
           - protocol: "http"

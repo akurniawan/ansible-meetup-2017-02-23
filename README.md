@@ -35,3 +35,4 @@ In this repository we could learn how to create new filter plugins in Ansible.
 
 # Reference
 * https://github.com/linuxdynasty/ld-ansible-filter-plugins/tree/bbd28a8b7ea667e29e5c789306147847a87ef398
+* https://docs.ansible.com/ansible/playbooks_filters.html

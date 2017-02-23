@@ -2,14 +2,14 @@
 - hosts: localhost
   connection: local
   vars:
-    ami_id: "ubuntu/images/hvm-ssd/ubuntu-trusty-14.04-amd64-server-*"
+    ami: "ubuntu/images/hvm-ssd/ubuntu-trusty-14.04-amd64-server-*"
   tasks:
     - name: create dummy ec2 instance
       ec2:
         region: "ap-southeast-1"
         key_name: "test-instance"
         instance_type: t2.nano
-        image: "{{ ami_id | latest_ami_id('ap-southeast-1', ami_owner_id='099720109477') }}"
+        image: "{{ ami | latest_ami_id('ap-southeast-1', ami_owner_id='099720109477') }}"
         wait: true
         group: "w77-office-app"
         exact_count: 2
