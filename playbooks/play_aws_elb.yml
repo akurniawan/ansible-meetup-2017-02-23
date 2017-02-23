@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: create elb
+      ec2_elb_lb:
+        state: present
+        name: "test-elb-ansible"
+        scheme: "internal"
+        region: "ap-southeast-1"
+        instance_ids: "{{ 'ap-southeast-1' | get_instances_by_tags(return_key='InstanceId', Cluster='test-ansible') }}"
+        subnets: "{{ 'vpc-eaf6088e' | get_subnet_ids_by_tags(region='ap-southeast-1', Tier='app') }}"
+        listeners:
+          - protocol: "http"
+            load_balancer_port: 80
+            instance_port: 80
+            proxy_protocol: True
