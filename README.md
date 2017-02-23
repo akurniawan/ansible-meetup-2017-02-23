@@ -5,6 +5,7 @@ In this repository we could learn how to create new filter plugins in Ansible.
 ## Requirements
 * Ansible
 * Python 2.7
+* AWS
 
 ## Demo: How to create new ansible filter plugins
 
